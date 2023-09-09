@@ -66,6 +66,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
 
                     deletePost(list[position].id)
+                    loadList()
+                    Toast.makeText(this@MainActivity, "Ochdi", Toast.LENGTH_SHORT).show()
 
                 }
 
@@ -86,6 +88,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun deletePost(id: Int) {
+
+        showProgress()
 
         ApiClient.apiServis.deletePost(id).enqueue(object :retrofit2.Callback<Post>{
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
